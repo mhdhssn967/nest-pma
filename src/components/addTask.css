@@ -1,0 +1,155 @@
+/* .custom-modal-overlay {
+    position: fixed;
+    top: 130px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-self: center;
+    z-index: 1000;
+    width: 100%;
+  } */
+  
+  .custom-modal {
+    background-color: #fff;
+    padding: 20px;
+    width: 500px;
+    left: 50%;
+    right: 50%;
+    top: 20%;
+    border-radius: 12px;
+    /* box-shadow: 0 10px 250px rgba(0, 0, 0, 0.3); */
+    animation: fadeIn 0.3s ease-in-out;
+    position: fixed;
+    justify-self: center;
+    z-index: 120;
+  }
+  
+  .custom-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .custom-modal-header h2 {
+    margin: 0;
+  }
+  
+  .close-button {
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .custom-modal-body {
+    padding: 20px 0;
+  }
+  
+  .custom-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+  }
+  
+  .custom-modal-footer button {
+    background-color: #4d4e50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .custom-modal-footer button:hover {
+    background-color: #7c7c7c;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .task-form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .task-form input,
+  .task-form textarea,
+  .task-form select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 200px;
+  }
+  .task-form select{
+    width: 220px;
+  }
+  .task-form textarea{
+    width: 450px;
+  }
+  
+  .custom-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .custom-modal-footer button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .custom-modal-footer .save-button {
+    background-color: blueviolet;
+  }
+  
+  .custom-modal-footer .save-button:hover {
+    background-color: rgb(77, 15, 136);
+  }
+  
+  .custom-modal-footer button:not(.save-button) {
+    background-color: #919191;
+  }
+  .formInner input, select{
+    margin-bottom: 2%;
+  }
+  .formInner{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-right: 5%;
+  }
+  .formInputs{
+    display: flex;
+  }
+  .fa-solid{
+    letter-spacing: 1px;
+  }
+  .formInputs label{
+    margin-top: 4%;
+  }
+  .formInputs option{
+    color: #333;
+  }

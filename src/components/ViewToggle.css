@@ -1,0 +1,15 @@
+.toggle-switch img{
+    width: 20px;
+    margin: 1% 1%;
+    transition: 0.2s ease;
+    padding: 4px;
+
+}
+.toggle-switch{
+    display: flex;
+    justify-content: center;
+}
+.toggle-switch img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}

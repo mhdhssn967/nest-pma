@@ -1,0 +1,47 @@
+.nav{
+    padding: 0.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5%;
+    border-radius: 15px 15px 0px 0px;
+}
+.nav img{
+    width: 60px;
+    filter: invert(1);
+    margin: 1% 1%;
+}
+
+.nav h3{
+    font-weight: 300;
+}
+.navLeft{
+    display: flex;
+    width: 400px;
+    align-items: center;
+    margin: 0.5%;
+    border-radius: 15px 15px 0px 0px;
+}
+.company-name{
+    background-color: aliceblue;
+    padding: 12px;
+    border: 0.5px gray solid;
+    border-radius: 50px;
+    font-size: 20px;
+}
+.logout-btn{
+    margin-left: 5%;
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 2%;
+    border: solid 0.5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.1s;
+}
+.logout-btn:hover{
+    transform: scale(1.1);
+}
+.logout-btn:active{
+    transform: scale(0.9);
+}

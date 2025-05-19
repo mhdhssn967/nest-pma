@@ -1,0 +1,73 @@
+
+.chip {
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: white;
+    transition: 0.2s;
+  }
+  .chip.active {
+    background: #616161;
+    border-color: #2e2e2e;
+    color: rgb(255, 255, 255);
+  }
+  .fa-magnifying-glass{
+    color: rgb(255, 255, 255);
+    background-color:rgb(73, 73, 73);
+    padding: 8px;
+    border-radius: 20px 0px 0px 20px;
+    margin-right: -2px;
+    z-index: 1;
+}
+.search-box{
+    padding: 7px;
+    border-radius: 0px 20px 20px 0px;
+    border: solid 0.5px;
+
+}
+.filterEmployee select{
+    padding: 5px;
+    width: 100%;
+    border-radius: 10px;
+}
+.priority-light{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin:2% 5%;
+  cursor:pointer;
+}
+.priority-light:hover{
+  transform: scale(1.1);
+  transition: 0.1s;
+}
+.priority-light:active{
+  transform: scale(0.9);
+  transition: 0.1s;
+}
+.high-priority{
+  background-color: red;
+}
+.medium-priority{
+  background-color: orange;
+}
+.low-priority{
+  background-color: rgb(66, 201, 12);
+}
+.priority-filter{
+  width: 180px;
+  border: solid 0.5px rgb(179, 177, 177);
+  border-radius: 25px;
+  display: flex;
+  padding: 4px 1px;
+  justify-content: center;
+  align-items: center;
+}
+.priority-filter h4{
+  font-weight: 400;
+}
+.filterEmployee{
+  margin: auto 2%
+}

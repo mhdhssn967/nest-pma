@@ -1,0 +1,134 @@
+.allTasks{
+    margin: 2%;
+    height: 80vh;
+    overflow-y: scroll; /* Only vertical scroll */
+    overflow-x: hidden;  /* Hide horizontal scroll */
+  }
+  
+  /* For WebKit browsers (Chrome, Safari) */
+  .allTasks::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .allTasks::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  
+  .allTasks::-webkit-scrollbar-thumb {
+    background-color: #2c83e6;
+    border-radius: 4px;
+  }
+  
+  .allTasks::-webkit-scrollbar-thumb:hover {
+    background-color: #2d6d92;
+  }
+.card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    justify-self: center;
+    border-bottom: solid 0.5px rgb(197, 195, 195);
+    padding-bottom: 20px;
+    margin-bottom: 2%;
+    margin-top: 0.1%;
+    animation: openCards 0.4s;
+    z-index: -2;
+}
+.highlight {
+    background-color: rgb(207, 207, 207);
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 2px;
+  }
+  
+
+.taskCard{
+    background-color: aliceblue;
+    padding: 1%;
+    margin-top: 2%;
+    min-width: 600px;
+    max-width: 600px;
+    border-radius: 30px;
+    overflow: hidden;
+    /* z-index: 1; */
+    /* transition: 0.1s linear; */
+}
+
+
+.card h3{
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.t1{
+    display: flex;
+    justify-content: space-between;
+}
+.taskCard h3{
+    margin-top: 2%;
+    margin-left: 1%;
+    font-weight: 500;
+}
+.cardHead h3{
+    font-size: 22px;
+}
+.taskHeading{
+    font-weight: 800 !important;
+    font-size: 18px !important;
+    margin-bottom: 2%;
+}
+.description{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+.taskCard:hover{
+    filter: drop-shadow(2px 2px 0px black);
+    border: solid 0.5px black;
+    cursor:pointer;
+    transform: translateX(-2px) translateY(-2px);
+}
+.taskCard:active{
+    transform: translateX(2px) translateY(2px);
+    filter: drop-shadow(0px 0px 0px black);
+    z-index: -1;
+}
+.fa-thumbtack{
+    color: blueviolet;
+}
+.fa-user{
+    color: rgb(170, 110, 31);
+}
+.fa-bars-progress{
+    color: rgb(61, 136, 223);
+}
+
+.fa-square-pen{
+    color: cadetblue;
+}
+.fa-clipboard{
+    color: rgb(202, 124, 22);
+}
+.priority{
+    width:30%;
+    border-radius: 0px 0px 50px;
+    height: 10px;
+    margin-left: -5%;
+    margin-top: -3%;
+    overflow: hidden;
+}
+@keyframes openCards{
+    0%{
+        margin-top: -10%;
+    }
+    100%{
+        margin-top: 0.1%;
+    }
+}
+.view-details-modal{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,49 @@
+.taskHead{
+    padding: 0.5%;
+    border-radius: 15px 15px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.taskheadLeft{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fa-list-check{
+    font-size: 30px;
+    margin: 0.5% 0.5%;
+}
+.fa-square-plus{
+    margin-left: 1%;
+    font-size: 40px;
+}
+.taskView h1{
+    font-weight: 400;
+    margin-left: 4%;
+}
+.fa-square-plus:hover{
+    cursor: pointer;
+    filter: invert(1);
+}
+.fa-square-plus:active{
+    filter: invert(0);
+}
+.cardHead{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1%;
+    margin-left: -5%;
+    width: 74%;
+    justify-self: center;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 0px;
+}
+.taskView{
+    background-color: rgb(255, 255, 255);
+    padding: 0.5%;
+    height: 80%;
+    margin: 0% 1% 1%;
+    border-radius: 15px 15px 15px 15px;
+}
+

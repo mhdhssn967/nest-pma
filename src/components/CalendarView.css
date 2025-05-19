@@ -1,0 +1,98 @@
+.calendar-wrapper {
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: openCalender 0.5s;
+  }
+  .calendar-container{
+    height: 90vh;
+    overflow-y: scroll; /* Only vertical scroll */
+    overflow-x: hidden;
+  }
+  @keyframes openCalender {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
+  }
+
+.fc .fc-button .fc-icon {
+    color: #ffffff; 
+  }
+
+  .fc .fc-button-group .fc-prev-button,
+.fc .fc-button-group .fc-next-button {
+  background-color: rgb(73, 73, 73);
+}
+
+.calendar-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+  }
+  
+  .calendar-legend span {
+    padding: 6px 12px;
+    color: #333;
+    background-color: #eee;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 80px;
+    text-align: center;
+  }
+  /* Force calendar elements to stay below modal */
+.fc {
+    z-index: 0 !important;
+    position: relative;
+  }
+  
+  .fc .fc-scrollgrid {
+    z-index: 0 !important;
+  }
+  
+  .fc .fc-daygrid-day-frame {
+    z-index: 0 !important;
+    height: auto;
+    margin-top: 0%;
+    animation: openCalender .4s;
+  }
+  @keyframes openCalender{
+    0%{
+        margin-top: -20%;
+    }
+    100%{
+        margin-top: 0%;
+    }
+}
+  
+  .fc-event:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+    cursor: pointer;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 10, 0.2); */
+    transition: all 0.2s ease-in-out;
+  }
+  .fc-event:active{
+    transform: scale(0.9);
+  }
+  .fc-event{
+    transition: 0.1s;
+  }
+  .fc .fc-col-header-cell {
+  background-color: #474747;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px 0;
+  border: 1px solid #ddd;
+}
+
+.fc .fc-col-header-cell-cushion {
+  color: #ffffff ;
+  font-weight: bold;
+}
