@@ -3,3 +3,8 @@
   color: rgb(65, 65, 64);
   margin: 0%;
 }
+@media (max-width:600px) {
+  body{
+    margin: 2px;
+  }
+}
