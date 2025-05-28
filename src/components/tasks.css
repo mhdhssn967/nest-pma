@@ -137,6 +137,7 @@
     min-width: 150px;
     max-width: 600px;
     transform: scale(0.9);
+    border-radius: 8px;
   }
   .card {
     width: 100%;
@@ -153,7 +154,6 @@
     font-size: 13px;
   }
   .due-date {
-    text-wrap: nowrap;
     margin-left: -20px !important;
   }
  

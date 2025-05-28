@@ -8,6 +8,10 @@
     background: white;
     transition: 0.2s;
   }
+  .filter-chips{
+    display: flex;
+    flex-wrap: nowrap;
+  }
   .chip.active {
     background: #616161;
     border-color: #2e2e2e;
@@ -83,5 +87,16 @@
     border-radius: 10px;
     padding: 7px;
     margin: 5px;
+    font-size: 10px;
   }
+  .priority-filter h4{
+    font-size: 12px;
+  }
+  .priority-filter{
+    width: 130px;
+    border: none;
+    margin: 5px;
+    align-items: center;
+    }
+ 
 }
