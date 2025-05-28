@@ -9,7 +9,8 @@ const HomePage = () => {
   const [isAdmin, setIsAdmin]=useState(false)
   const [companyId,setCompanyId]=useState()
   const [employeeName, setEmployeeName]=useState()
-  const [companyName,setCompanyName]=useState()      
+  const [companyName,setCompanyName]=useState()    
+  
   
 
   useEffect(()=>{
@@ -44,7 +45,7 @@ useEffect(() => {
   return (
     <>
     <NavBar employeeName={employeeName} companyName={companyName}/>
-    <TaskView currentUser={currentUser} isAdmin={isAdmin} companyId={companyId}/>
+    <TaskView currentUser={currentUser} companyName={companyName} isAdmin={isAdmin} companyId={companyId}/>
     </>
   )
 }

@@ -13,7 +13,7 @@ import ViewToggle from './ViewToggle'
 const adminId = import.meta.env.VITE_ADMIN_ID
 
 
-const TaskView = ({isAdmin, currentUser, companyId}) => {
+const TaskView = ({isAdmin, currentUser, companyId, companyName}) => {
 
   
     const [modalShow, setModalShow] = useState(false);
@@ -93,6 +93,7 @@ const TaskView = ({isAdmin, currentUser, companyId}) => {
         <>
         <AddTask currentUser={currentUser} show={modalShow} onHide={() => setModalShow(false)} setTriggerRefresh={setTriggerRefresh} triggerRefresh={triggerRefresh} isAdmin={isAdmin}/>
             <div className='taskView' style={modalShow?{filter:'brightness(0.5)'}:{filter:'brightness(1)'}}>
+                  <h2 className='company-name'>{companyName}</h2>
                 <div className='taskHead'>
                     <div className='taskheadLeft'>
                       <i className="fa-solid fa-list-check"></i>
@@ -114,9 +115,9 @@ const TaskView = ({isAdmin, currentUser, companyId}) => {
 
                {toggleView=='tasks'&& <div className='cardHead'>
               <h3>Assigned On</h3>
-              <div >
+          
                   <h3>Task</h3>
-              </div>
+      
               <h3>
                   Due on
               </h3>

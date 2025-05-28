@@ -24,10 +24,12 @@
 }
 .company-name{
     background-color: aliceblue;
-    padding: 12px;
+    padding:12px;
     border: 0.5px gray solid;
     border-radius: 50px;
     font-size: 20px;
+    width: fit-content;
+    margin: 1%;
 }
 .logout-btn{
     margin-left: 5%;
@@ -44,4 +46,14 @@
 }
 .logout-btn:active{
     transform: scale(0.9);
+}
+.company-name{
+    font-size: 13px;
+    border-radius: 14px;
+
+}
+@media (max-width:600px) {
+    .nav img{
+        display: none;
+    }
 }

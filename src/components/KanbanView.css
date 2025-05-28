@@ -148,3 +148,15 @@ strong{
     flex-direction: column;
     align-items: center;
 }
+@media (max-width:600px) {
+    .kanban-container{
+        overflow-x: scroll;
+        justify-content: space-between;
+    }
+    .cards:hover{
+    transform: scale(1);
+    margin-top: 10%;
+    margin-bottom: 10%;
+    transition: 0.2s;
+    }
+}

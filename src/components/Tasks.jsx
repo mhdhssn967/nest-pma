@@ -118,7 +118,7 @@ const Tasks = ({ displayTasks, setTriggerRefresh, triggerRefresh, searchText, co
                   </h3>
                 </div>
 
-                <h3 style={{ width: '200px',marginLeft:'5%' }}>{task.dueDate || 'Undated'}</h3>
+                <h3 className='due-date' style={{ width: '200px',marginLeft:'5%' }}>{task.dueDate || 'Undated'}</h3>
               </div>
             ))
           ) : (

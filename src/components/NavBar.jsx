@@ -42,8 +42,8 @@ const NavBar = ({employeeName, companyName}) => {
   return (
     <>
     <div className='nav'>
-        <div className='navLeft'><img src={logo} alt="" /><h3> Oqulix Product Management</h3> </div>
-        <h2 className='company-name'>{companyName}</h2>
+        <div className='navLeft'><img src={logo} alt="" /> </div>
+    
         <div style={{display:'flex',alignItems:'center',marginRight:'100px'}}>
         <i className='fa-solid fa-circle-user' style={{fontSize:'30px',marginRight:'2%'}}></i><h3 style={{fontWeight:'500',marginBottom:'3px',fontSize:'25px', textWrap:'nowrap'}}>          
            {employeeName}</h3> <button onClick={handleLogout} className='logout-btn'>Logout</button></div>

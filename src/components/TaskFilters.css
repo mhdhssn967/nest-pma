@@ -71,3 +71,17 @@
 .filterEmployee{
   margin: auto 2%
 }
+@media (max-width:600px) {
+  .search-box{
+    width: 70vw !important;
+    border-radius:0px 10px 10px 0px;
+  }
+  .search-div{
+    margin: 2% auto 2% -2px !important;
+  }
+  .filter-chips button{
+    border-radius: 10px;
+    padding: 7px;
+    margin: 5px;
+  }
+}
