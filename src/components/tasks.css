@@ -6,7 +6,7 @@
 }
 
 /* For WebKit browsers (Chrome, Safari) */
-.allTasks::-webkit-scrollbar {
+/* .allTasks::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -21,7 +21,7 @@
 
 .allTasks::-webkit-scrollbar-thumb:hover {
   background-color: #2d6d92;
-}
+} */
 .card {
   display: flex;
   justify-content: space-between;
