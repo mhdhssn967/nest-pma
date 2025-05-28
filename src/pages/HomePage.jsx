@@ -3,6 +3,7 @@ import TaskView from '../components/TaskView'
 import getCurrentUserID from '../services/getUserID'
 import { getCompanyDetails, ifAdmin } from '../services/getEmployeeDetails'
 import NavBar from '../components/NavBar'
+import './HomePage.css'
 
 const HomePage = () => {
   const [currentUser, setCurrentUser]=useState('')  

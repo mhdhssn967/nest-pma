@@ -46,7 +46,7 @@ const Tasks = ({ displayTasks, setTriggerRefresh, triggerRefresh, searchText, co
                   setViewDetails(true);
                 }}
               >
-                <h3 style={{ width: '200px' }}>
+                <h3 style={{ width: '200px' }} className='created-date'>
                   {new Date(task.createdAt.seconds * 1000).toLocaleString()}
                 </h3>
 
