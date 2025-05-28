@@ -167,6 +167,14 @@ select {
     animation: fadeIn 0.3s ease-in-out;
     z-index: 120;
     justify-self: center;
+  }@keyframes fadeIn {
+  from {
 
+    transform: scale(0) translateX(-20%);
   }
+  to {
+
+    transform: scale(0.6) translateX(-20%);
+  }
+}
 }
