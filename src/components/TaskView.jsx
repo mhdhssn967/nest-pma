@@ -10,7 +10,7 @@ import TaskFilters from './TaskFilters'
 import { filterDataByEmployee, filterDataByPriority, filterDataBySearch, filterDataByStatus } from '../helpers/filterData'
 import CalendarView from './CalendarView'
 import ViewToggle from './ViewToggle'
-const adminId = import.meta.env.VITE_ADMIN_ID
+
 
 
 const TaskView = ({isAdmin, currentUser, companyId, companyName}) => {
@@ -98,7 +98,7 @@ const TaskView = ({isAdmin, currentUser, companyId, companyName}) => {
                     <div className='taskheadLeft'>
                       <i className="fa-solid fa-list-check"></i>
                       <h1>Tasks</h1>
-                      {adminId&&
+                      {isAdmin&&
                           <div style={{marginLeft:'10px'}}>
                           <i onClick={() => setModalShow(true)} title='Add a new task' className="fa-solid fa-square-plus"></i>
                       </div>}
