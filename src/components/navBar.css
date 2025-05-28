@@ -22,15 +22,7 @@
     margin: 0.5%;
     border-radius: 15px 15px 0px 0px;
 }
-.company-name{
-    background-color: aliceblue;
-    padding:12px;
-    border: 0.5px gray solid;
-    border-radius: 50px;
-    font-size: 20px;
-    width: fit-content;
-    margin: 1%;
-}
+
 .logout-btn{
     margin-left: 5%;
     background-color: aliceblue;
@@ -47,16 +39,15 @@
 .logout-btn:active{
     transform: scale(0.9);
 }
-.company-name{
-    font-size: 13px;
-    border-radius: 14px;
 
-}
 @media (max-width:600px) {
     .nav img{
         display: none;
     }
     .nav{
-        margin: 20px;
+        margin: 0px;
+    }
+    .nav h3{
+        font-size: 12px;
     }
 }
