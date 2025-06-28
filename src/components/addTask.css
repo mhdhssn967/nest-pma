@@ -7,20 +7,28 @@
     z-index: 1000;
     width: 100%;
   } */
-
+.modal-backdrop{
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
 .custom-modal {
   background-color: #fff;
   padding: 20px;
   width: 500px;
-  left: 50%;
-  right: 50%;
-  top: 20%;
+  top: 0%;
   border-radius: 12px;
   /* box-shadow: 0 10px 250px rgba(0, 0, 0, 0.3); */
   animation: fadeIn 0.3s ease-in-out;
-  position: fixed;
   justify-self: center;
   z-index: 120;
+  filter: drop-shadow(10px 10px 3px rgb(153, 152, 152));
 }
 
 .custom-modal-header {
