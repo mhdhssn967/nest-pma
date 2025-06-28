@@ -10,7 +10,8 @@ const HomePage = () => {
   const [isAdmin, setIsAdmin]=useState(false)
   const [companyId,setCompanyId]=useState()
   const [employeeName, setEmployeeName]=useState()
-  const [companyName,setCompanyName]=useState()    
+  const [companyName,setCompanyName]=useState()
+  const [logoLink,setLogoLink]=useState('')    
   
   
 
@@ -27,10 +28,12 @@ const HomePage = () => {
 useEffect(() => {
   const fetchDetails = async () => {
     const companyData = await getCompanyDetails(currentUser);
+    console.log(companyData);
+    
     setCompanyId(companyData.companyId)
     setCompanyName(companyData.companyName)
     setEmployeeName(companyData.employeeName)
-    
+    setLogoLink(companyData.logo)
   };
 
   if (currentUser) fetchDetails();
@@ -46,7 +49,7 @@ useEffect(() => {
   return (
     <>
     <NavBar employeeName={employeeName} companyName={companyName}/>
-    <TaskView currentUser={currentUser} companyName={companyName} isAdmin={isAdmin} companyId={companyId}/>
+    <TaskView logoLink={logoLink} currentUser={currentUser} companyName={companyName} isAdmin={isAdmin} companyId={companyId}/>
     </>
   )
 }

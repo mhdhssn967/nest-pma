@@ -9,6 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading,setLoading]=useState(true)
     const navigate = useNavigate(); // ✅ Initialize navigate
 
     const handleLogin = async (e) => {

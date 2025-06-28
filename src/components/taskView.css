@@ -41,9 +41,7 @@
     padding-bottom: 0px;
 }
 .taskView{
-    background:url('../assets/bg.jpg');
-    background-size: cover;
-    background-attachment: fixed;
+background-color: white;
     padding: 0.5%;
     height: 80%;
     margin: 0% 1% 1%;

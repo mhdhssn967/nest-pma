@@ -13,7 +13,7 @@ import ViewToggle from './ViewToggle'
 
 
 
-const TaskView = ({isAdmin, currentUser, companyId, companyName}) => {
+const TaskView = ({isAdmin, currentUser, companyId, companyName, logoLink}) => {
 
   
     const [modalShow, setModalShow] = useState(false);
@@ -27,6 +27,8 @@ const TaskView = ({isAdmin, currentUser, companyId, companyName}) => {
     const [priorityFilter, setPriorityFilter]=useState('All')
     const [user,setUser]=useState()  
 
+    console.log(logoLink);
+    
 
     
     // useEffect(() => { 
@@ -93,7 +95,8 @@ const TaskView = ({isAdmin, currentUser, companyId, companyName}) => {
         <>
         <AddTask currentUser={currentUser} show={modalShow} onHide={() => setModalShow(false)} setTriggerRefresh={setTriggerRefresh} triggerRefresh={triggerRefresh} isAdmin={isAdmin}/>
             <div className='taskView' style={modalShow?{filter:'brightness(0.5)'}:{filter:'brightness(1)'}}>
-                  <h2 className='company-name'>{companyName}</h2>
+                  <img src={logoLink} alt="Company Logo" />
+                  <h2 className='company-name'>  {companyName}</h2>
                 <div className='taskHead'>
                     <div className='taskheadLeft'>
                       <i className="fa-solid fa-list-check"></i>
