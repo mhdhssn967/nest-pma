@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { clockIn, clockOut, getActiveTimesheet, fetchTimesheets } from '../services/timesheetService';
+
+const calculateHours = (loginTime, logoutTime) => {
+  if (!loginTime || !logoutTime) return 0;
+  const login = new Date(loginTime.seconds * 1000);
+  const logout = new Date(logoutTime.seconds * 1000);
+  const diffMs = logout - login;
+  const diffHours = diffMs / (1000 * 60 * 60);
+  return diffHours;
+};
 
 const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
   const [activeSession, setActiveSession] = useState(null);
   const [history, setHistory] = useState([]);
+  const [allLogs, setAllLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [employees, setEmployees] = useState([]);
@@ -33,27 +43,75 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
   const loadData = async () => {
     setLoading(true);
     try {
-      const [active, logs] = await Promise.all([
-        getActiveTimesheet(companyId, currentUser),
-        fetchTimesheets(companyId, filterUID === 'all' ? currentUser : filterUID, isAdmin && filterUID === 'all')
-      ]);
-      
+      let allLogsData = [];
       let filteredLogs;
       if (isAdmin) {
-        const allLogs = await fetchTimesheets(companyId, null, true);
-        filteredLogs = filterUID === 'all' ? allLogs : allLogs.filter(log => log.uid === filterUID);
+        allLogsData = await fetchTimesheets(companyId, null, true);
+        filteredLogs = filterUID === 'all' ? allLogsData : allLogsData.filter(log => log.uid === filterUID);
       } else {
         filteredLogs = await fetchTimesheets(companyId, currentUser, false);
+        allLogsData = filteredLogs;
       }
+
+      const active = await getActiveTimesheet(companyId, currentUser);
 
       setActiveSession(active);
       setHistory(filteredLogs);
+      setAllLogs(allLogsData);
     } catch (err) {
       console.error("Load error:", err);
     } finally {
       setLoading(false);
     }
   };
+
+  const employeeStats = useMemo(() => {
+    const stats = {};
+    allLogs.filter(log => log.status === 'completed').forEach(log => {
+      const uid = log.uid;
+      if (!stats[uid]) {
+        stats[uid] = {
+          uid,
+          empName: log.empName,
+          totalHours: 0,
+          daysWorked: new Set(),
+          weekHours: 0,
+          monthHours: 0
+        };
+      }
+      const hours = calculateHours(log.loginTime, log.logoutTime);
+      stats[uid].totalHours += hours;
+      stats[uid].daysWorked.add(log.date);
+
+      // Check if in current week
+      const logDate = new Date(log.date);
+      const now = new Date();
+      const startOfWeek = new Date(now);
+      startOfWeek.setDate(now.getDate() - now.getDay());
+      startOfWeek.setHours(0, 0, 0, 0);
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      endOfWeek.setHours(23, 59, 59, 999);
+      if (logDate >= startOfWeek && logDate <= endOfWeek) {
+        stats[uid].weekHours += hours;
+      }
+
+      // Current month
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+      const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+      endOfMonth.setHours(23, 59, 59, 999);
+      if (logDate >= startOfMonth && logDate <= endOfMonth) {
+        stats[uid].monthHours += hours;
+      }
+    });
+
+    // Calculate avg
+    Object.values(stats).forEach(stat => {
+      stat.avgHoursPerDay = stat.daysWorked.size > 0 ? stat.totalHours / stat.daysWorked.size : 0;
+    });
+
+    return stats;
+  }, [allLogs]);
 
   const handleClockIn = async (e) => {
     e.preventDefault();
@@ -63,7 +121,7 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
       await clockIn(companyId, currentUser, employeeName, data);
       await loadData();
       setTasksPlanned('');
-    } catch (err) {
+    } catch {
       alert("Clock-in failed. Please try again.");
     } finally {
       setSubmitting(false);
@@ -79,7 +137,7 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
       await loadData();
       setTasksCompleted('');
       setSalesOutreach(0);
-    } catch (err) {
+    } catch {
       alert("Clock-out failed. Please try again.");
     } finally {
       setSubmitting(false);
@@ -105,6 +163,63 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" style={{marginTop:'20px'}}>
         
+        {/* Dashboard */}
+        {Object.keys(employeeStats).length > 0 && (
+          <div className="lg:col-span-12 mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <i className="fa-solid fa-chart-line text-blue-600"></i> 
+              Performance Dashboard
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
+              {Object.values(employeeStats).flatMap(stat => [
+                {
+                  id: `${stat.uid}-week`,
+                  empName: stat.empName,
+                  label: 'Week',
+                  value: stat.weekHours,
+                  color: 'blue',
+                  icon: 'fa-calendar-week'
+                },
+                {
+                  id: `${stat.uid}-month`,
+                  empName: stat.empName,
+                  label: 'Month',
+                  value: stat.monthHours,
+                  color: 'green',
+                  icon: 'fa-calendar-alt'
+                },
+                {
+                  id: `${stat.uid}-avg`,
+                  empName: stat.empName,
+                  label: 'Avg/Day',
+                  value: stat.avgHoursPerDay,
+                  color: 'purple',
+                  icon: 'fa-clock'
+                },
+                {
+                  id: `${stat.uid}-total`,
+                  empName: stat.empName,
+                  label: 'Total',
+                  value: stat.totalHours,
+                  color: 'red',
+                  icon: 'fa-chart-bar'
+                }
+              ]).map(metric => (
+                <div key={metric.id} className="bg-white rounded-lg shadow-md border border-gray-100 p-3 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-xs font-semibold text-gray-700 truncate flex-1">{metric.empName}</h4>
+                    <i className={`fa-solid ${metric.icon} text-${metric.color}-500 text-xs`}></i>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xs text-gray-500 mb-1">{metric.label}</p>
+                    <p className={`text-lg font-bold text-${metric.color}-600`}>{metric.value.toFixed(1)}h</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Action Panel (Clock In/Out) */}
         <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-8">
           {!activeSession ? (
@@ -241,6 +356,7 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
                     <th className="px-6 py-4">Mode</th>
                     <th className="px-6 py-4">Login</th>
                     <th className="px-6 py-4">Logout</th>
+                    <th className="px-6 py-4">Total Hours</th>
                     <th className="px-6 py-4">Sales</th>
                     <th className="px-6 py-4 text-center">Status</th>
                   </tr>
@@ -248,7 +364,7 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
                 <tbody className="divide-y divide-gray-100">
                   {history.length === 0 ? (
                     <tr>
-                      <td colSpan={isAdmin ? 7 : 6} className="px-6 py-12 text-center text-gray-400 font-medium">
+                      <td colSpan={isAdmin ? 8 : 7} className="px-6 py-12 text-center text-gray-400 font-medium">
                         <i className="fa-solid fa-folder-open block text-3xl mb-3 opacity-20"></i>
                         No timesheet records found
                       </td>
@@ -271,6 +387,9 @@ const TimesheetView = ({ currentUser, companyId, employeeName, isAdmin }) => {
                         </td>
                         <td className="px-6 py-4 text-gray-500 font-medium">
                           {log.logoutTime ? new Date(log.logoutTime.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '-'}
+                        </td>
+                        <td className="px-6 py-4 text-gray-500 font-medium">
+                          {log.logoutTime ? `${calculateHours(log.loginTime, log.logoutTime).toFixed(2)}h` : '-'}
                         </td>
                         <td className="px-6 py-4">
                           <span className="bg-gray-100 text-gray-700 font-bold px-2 py-0.5 rounded-full text-xs">
