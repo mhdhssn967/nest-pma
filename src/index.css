@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 *{
   font-family: "Quicksand", sans-serif;
   color: rgb(65, 65, 64);

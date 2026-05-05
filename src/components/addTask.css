@@ -164,13 +164,10 @@ select {
 }
 @media (max-width: 600px) {
   .custom-modal {
-    transform: scale(0.6) translateX(-20%);
+    transform: scale(0.6);
     background-color: #fff;
     padding: 20px;
     width: 500px;
-    position: fixed;
-    left: 0%; /* Horizontally center */
-    top: 18%;  /* Vertically center */
     border-radius: 12px;
     animation: fadeIn 0.3s ease-in-out;
     z-index: 120;

@@ -1,0 +1,61 @@
+.logout-modal {
+  width: 500px;
+  max-width: 95vw;
+  border-radius: 20px;
+}
+
+.modal-info {
+  background: #fff5f5;
+  color: #c53030;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  font-weight: 500;
+  border: 1px solid #fed7d7;
+}
+
+.logout-modal .form-group {
+  margin-bottom: 20px;
+}
+
+.logout-modal .form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.logout-modal textarea, .logout-modal input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.logout-modal textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn-confirm {
+  background-color: #2d3748 !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  font-weight: 700 !important;
+}
+
+.btn-cancel {
+  background-color: #e2e8f0 !important;
+  color: #4a5568 !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+}
+
+.logout-modal h2 {
+  font-size: 1.25rem;
+  color: #2d3748;
+}
